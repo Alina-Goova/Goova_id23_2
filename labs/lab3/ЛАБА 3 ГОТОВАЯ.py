@@ -108,14 +108,14 @@ class Tuchka():
             painter.drawPixmap(QRect(self.x, self.y, self.width-1, self.height-1), pixmap)
             
         for drop in self.drops:
-            painter.drawLine(drop[0], drop[1], drop[0], drop[1]+drop[2])                
+            painter.drawLine(drop[0], drop[1], drop[0]+drop[5], drop[1]+drop[2])                
 
     def drops_list(self):
         self.drops = []
         for _ in range(self.drops_amount):
             x = random.randint(self.x + 10, self.x+self.width - 10)
             y = random.randint(self.y+self.height, self.y+self.height+50)
-            self.drops.append([x, y, random.randint(20, 30), random.randint(0,3), random.randint(1*self.drops_speed, 3*self.drops_speed)])
+            self.drops.append([x, y, random.randint(20, 30), random.randint(0,3), random.randint(1*self.drops_speed, 3*self.drops_speed), random.randint(-2, 2)])
 
     def change_tuchka(self):
         current_size = (self.width, self.height)
@@ -135,6 +135,7 @@ class Tuchka():
 
     def drops_change(self):
         for drop in self.drops:
+            drop[0]+=drop[5]
             drop[1]+=drop[4]
             if drop[1]+drop[2]>690:
                 drop[1] = random.randint(self.y + self.height, self.y + self.height + 50)
