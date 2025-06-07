@@ -5,6 +5,4 @@ sudo apt-get install -y build-essential libssl-dev zlib1g-dev
 sudo apt install -y hashcat
 cd john/src
 ./configure
-make -s clean && make -sj4
-cd ../..
-python3 main.py
+make -s clean && make -sj8
